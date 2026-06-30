@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>AR - Escarapela Argentina</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/aframe@1.8.0/dist/aframe-master.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.4.7/aframe/build/aframe-ar.js"></script>
+
+  <style>
+    body { margin: 0; overflow: hidden; font-family: Arial, sans-serif; }
+    #ayuda {
+      position: fixed;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      z-index: 10;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: rgba(0,0,0,.65);
+      color: white;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="ayuda">Apuntá la cámara al marcador <b>Hiro</b>. Imagen AR: <b>Escarapela Argentina</b></div>
+
+  <a-scene embedded
+    vr-mode-ui="enabled: false"
+    renderer="logarithmicDepthBuffer: true; antialias: true; alpha: true"
+    arjs="sourceType: webcam; debugUIEnabled: false; detectionMode: mono; trackingMethod: best;">
+
+    <a-assets>
+      <img id="objetoAR" src="assets/escarapela.png" crossorigin="anonymous">
+    </a-assets>
+
+    <a-marker preset="hiro" smooth="true" smoothCount="5" smoothTolerance="0.01" smoothThreshold="2">
+      <a-image src="#objetoAR" position="0 0.05 0" rotation="-90 0 0" width="1.25" height="1.25" transparent="true"></a-image>
+      <a-text value="Escarapela Argentina" position="0 -0.85 0.05" rotation="-90 0 0" align="center" color="#111111" width="2"></a-text>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
